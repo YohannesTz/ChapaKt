@@ -49,19 +49,19 @@ or [chapa-java](https://github.com/Chapa-Et/chapa-java)
 First add jitpack to your project
 
 ```groovy
-    allprojects {
-        repositories {
-            maven { url 'https://jitpack.io' }
-        }
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
     }
+}
 ```
 
 Add the dependency
 
 ```groovy
-	dependencies {
-	        implementation 'com.github.YohannesTz:ChapaKt:1.0.0'
-	}
+dependencies {
+    implementation 'com.github.YohannesTz:ChapaKt:1.0.0'
+}
 ```
 
 ###
