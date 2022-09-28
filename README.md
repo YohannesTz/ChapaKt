@@ -50,11 +50,10 @@ First add jitpack to your project
 
 ```groovy
     allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
+        repositories {
+            maven { url 'https://jitpack.io' }
+        }
     }
-}
 ```
 
 Add the dependency
