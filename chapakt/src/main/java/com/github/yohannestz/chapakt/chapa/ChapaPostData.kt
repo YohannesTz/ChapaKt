@@ -8,7 +8,7 @@ data class ChapaPostData (
     var lastName: String,
     var txRef: String,
     var returnUrl: String,
-    var customizationTitle: String,
-    var customizationDescription: String,
-    var customizationLogo: String
+    var customizationTitle: String = "",
+    var customizationDescription: String = "",
+    var customizationLogo: String = ""
 )

@@ -77,7 +77,6 @@ class MainActivity : AppCompatActivity() {
     private var paymentActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                Log.e("resultReceived", "yes it did!")
                 CoroutineScope(Dispatchers.IO).launch {
                     val txRef =
                         result.data!!.getStringExtra(packageName + ChapaConstants.TRANSACTION_EXTRA_TX_REF)
@@ -85,7 +84,6 @@ class MainActivity : AppCompatActivity() {
                         val trRes: ChapaResponse? = withContext(Dispatchers.Default) {
                             chapaSdk.verifyPayment(txRef)
                         }
-                        Log.e("trRes", trRes.toString())
                         if (trRes != null && trRes.status == "success") {
                             this@MainActivity.runOnUiThread {
                                 statusTextView.text = "Paid!"

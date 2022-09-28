@@ -20,7 +20,6 @@ open class Chapa(private val secretKey: String) {
 
     fun initialize(postData: ChapaPostData): ChapaPayment? {
         var chapaInitResult: ChapaPayment? = null
-        Log.e("isValid", ChapaValidator.isValid(postData).toString())
         if (ChapaValidator.isValid(postData)) {
             val url = URL(ChapaConstants.baseMobileUrl)
             val jsonBody = JSONObject()
@@ -46,11 +45,8 @@ open class Chapa(private val secretKey: String) {
 
             client.newCall(request).execute().use { response ->
                 val responseBody = response.body!!.source()
-                Log.e("responseError", response.toString())
                 if (response.isSuccessful) {
-                    Log.e("responseString",  response.peekBody(100).toString())
                     chapaInitResult = chapaPaymentJsonAdapter.fromJson(responseBody)
-                    Log.e("responseBody", chapaInitResult.toString())
                 } else {
                     if (response.message.isNotEmpty()) {
                         throw ChapaException(response.message)
@@ -72,9 +68,7 @@ open class Chapa(private val secretKey: String) {
 
         client.newCall(request).execute().use { response ->
             val responseBody = response.body!!.source()
-            Log.e("responseError", response.toString())
             if (response.isSuccessful) {
-                Log.e("responseString",  response.peekBody(100).toString())
                 paymentResponse = chapaPaymentResultAdapter.fromJson(responseBody)
             } else {
                 if (response.message.isNotEmpty()) {
