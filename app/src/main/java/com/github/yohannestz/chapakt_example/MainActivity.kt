@@ -19,26 +19,27 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var chapaSdk: Chapa
-    private val secretKey = "CHASECK_TEST-nmC3d1jQDGzFxngu38xtSVD4QYRU3yWJ"
+    private lateinit var secretKey: String
     private lateinit var statusTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        secretKey = getString(R.string.api_key_second)
         chapaSdk = Chapa(secretKey)
 
         val postData = ChapaPostData(
-            55.0,
+            1.0,
             "ETB",
-            "abebe@bikila.com",
-            "Abebe",
-            "Bikila",
+            "besumicheal@gmail.com",
+            "Besufikad",
+            "Micheal",
             UUID.randomUUID().toString(),
             "https://checkout.chapa.co/checkout/payment-receipt",
             "ChapaKt",
             "Chapa kotlin example",
-            "SomeLogo"
+            "https://img.icons8.com/color/344/kotlin.png"
         )
 
         val payButton = findViewById<Button>(R.id.payBtn)
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     chapaSdk.initialize(postData)
                 }
                 val chapaPayment = initResult.await()
-                if (chapaPayment != null && chapaPayment.status == "success") {
+                if ((chapaPayment != null) && (chapaPayment.status == "success")) {
                     val resultIntent = Intent(applicationContext, ChapaActivity::class.java)
                     resultIntent.putExtra(
                         packageName + ChapaConstants.TRANSACTION_EXTRA_RETURN_URL,
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     )
                     resultIntent.putExtra(
                         packageName + ChapaConstants.TRANSACTION_EXTRA_CHECKOUT_URL,
-                        chapaPayment.data.checkoutUrl
+                        chapaPayment.data?.checkoutUrl
                     )
                     resultIntent.putExtra(
                         packageName + ChapaConstants.TRANSACTION_EXTRA_TX_REF,
@@ -77,7 +78,12 @@ class MainActivity : AppCompatActivity() {
     private var paymentActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                CoroutineScope(Dispatchers.IO).launch {
+
+                val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                    throwable.printStackTrace()
+                }
+
+                CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                     val txRef =
                         result.data!!.getStringExtra(packageName + ChapaConstants.TRANSACTION_EXTRA_TX_REF)
                     if (txRef != null) {

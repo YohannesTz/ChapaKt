@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.LinearLayout
@@ -41,15 +42,30 @@ class ChapaActivity : AppCompatActivity() {
         checkOutWebView.settings.javaScriptEnabled = true
         checkOutWebView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
         checkOutWebView.clearCache(true)
+        checkOutWebView.addJavascriptInterface(ChapaWebInterface(this), "ChapaAndroid")
         checkOutWebView.loadUrl(checkOutUrl.toString())
     }
 
-
+    class ChapaWebInterface(private val context: Context) {
+        @JavascriptInterface
+        fun cancelClicked() {
+            Toast.makeText(context, "Cancel Clicked", Toast.LENGTH_LONG).show()
+        }
+    }
 
     inner class ChapaBrowser(private val returnUrl: String, private val txRef: String, private val context: Context): WebViewClient() {
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
+            view?.loadUrl("javascript:(function cancelClicked(){" +
+                    "alert(\"This was cool\")" +
+                    "})")
+            /*view?.loadUrl("<script type=\"text/javascript\">" +
+                    "function cancelClicked() {" +
+                        "ChapaAndroid.cancelClicked();" +
+                    "}" +
+                    "</script>"
+            )*/
             verificationLayer.visibility = View.INVISIBLE
             webViewLayer.visibility = View.VISIBLE
         }

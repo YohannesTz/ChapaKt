@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 data class ChapaPayment(
     var message: String,
     var status: String,
-    var data: Data
+    var data: Data? = null
 )
 
 data class Data(

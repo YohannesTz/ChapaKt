@@ -30,8 +30,16 @@ open class Chapa(private val secretKey: String) {
             jsonBody.put("last_name", postData.lastName)
             jsonBody.put("tx_ref", postData.txRef)
             jsonBody.put("return_url", postData.returnUrl)
-            jsonBody.put("customization[title]", postData.customizationTitle)
-            jsonBody.put("customization[description]", postData.customizationDescription)
+
+            val customization = Customization(
+                postData.customizationTitle,
+                postData.customizationDescription,
+                postData.customizationLogo
+            )
+
+            //jsonBody.put("customization[title]", postData.customizationTitle)
+            //jsonBody.put("customization[description]", postData.customizationDescription)
+            jsonBody.put("customization", customization)
 
             val mediaType = "application/json".toMediaType()
             val requestBody = jsonBody.toString().toRequestBody(mediaType)
@@ -45,14 +53,9 @@ open class Chapa(private val secretKey: String) {
 
             client.newCall(request).execute().use { response ->
                 val responseBody = response.body!!.source()
-                if (response.isSuccessful) {
-                    chapaInitResult = chapaPaymentJsonAdapter.fromJson(responseBody)
-                } else {
-                    if (response.message.isNotEmpty()) {
-                        throw ChapaException(response.message)
-                    } else {
-                        throw ChapaException("Something was wrong")
-                    }
+                chapaInitResult = chapaPaymentJsonAdapter.fromJson(responseBody)
+                if (!response.isSuccessful) {
+                    throw ChapaException(chapaInitResult!!.message)
                 }
             }
         }
