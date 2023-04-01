@@ -1,4 +1,5 @@
 # ChapaKt (Unofficial)
+![Code Grade](https://api.codiga.io/project/34815/status/svg)
 
 Simple api wrapper and utilities for chapa payment gateway. I know this is a hacky or not a really
 good solution but that's all what we got now until chapa releases an official Android-Sdk or just a
