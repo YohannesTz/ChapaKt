@@ -1,7 +1,7 @@
-package com.github.yohannestz.chapakt.chapa
+package com.github.yohannestz.chapakt.chapa.models
 
-data class ChapaPostData (
-    var amount: Double,
+data class ChapaPostData(
+    var amount: Double = 0.01,
     var currency: String,
     var email: String,
     var firstName: String,
@@ -10,5 +10,6 @@ data class ChapaPostData (
     var returnUrl: String,
     var customizationTitle: String = "",
     var customizationDescription: String = "",
-    var customizationLogo: String = ""
+    var customizationLogo: String = "",
+    var subAccountId: String = ""
 )

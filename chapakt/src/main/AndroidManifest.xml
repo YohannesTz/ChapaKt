@@ -6,7 +6,7 @@
 
     <application>
         <activity
-            android:name=".ChapaActivity"
+            android:name=".chapa.ui.ChapaActivity"
             android:theme="@style/Theme.ChapaKt.NoActionBar"
             android:exported="false" />
     </application>

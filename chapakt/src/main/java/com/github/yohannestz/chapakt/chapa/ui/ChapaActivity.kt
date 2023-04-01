@@ -1,11 +1,10 @@
-package com.github.yohannestz.chapakt
+package com.github.yohannestz.chapakt.chapa.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
@@ -13,8 +12,9 @@ import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
-import com.github.yohannestz.chapakt.chapa.Chapa
-import com.github.yohannestz.chapakt.chapa.ChapaConstants
+import com.github.yohannestz.chapakt.R
+import com.github.yohannestz.chapakt.chapa.util.Chapa
+import com.github.yohannestz.chapakt.chapa.util.ChapaConstants
 
 class ChapaActivity : AppCompatActivity() {
     private lateinit var webViewLayer: LinearLayout

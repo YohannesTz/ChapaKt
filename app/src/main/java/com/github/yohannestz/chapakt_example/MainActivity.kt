@@ -4,16 +4,15 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import com.github.yohannestz.chapakt.ChapaActivity
-import com.github.yohannestz.chapakt.chapa.Chapa
-import com.github.yohannestz.chapakt.chapa.ChapaConstants
-import com.github.yohannestz.chapakt.chapa.ChapaPostData
-import com.github.yohannestz.chapakt.chapa.ChapaResponse
+import com.github.yohannestz.chapakt.chapa.ui.ChapaActivity
+import com.github.yohannestz.chapakt.chapa.util.Chapa
+import com.github.yohannestz.chapakt.chapa.util.ChapaConstants
+import com.github.yohannestz.chapakt.chapa.models.ChapaPostData
+import com.github.yohannestz.chapakt.chapa.models.ChapaResponse
 import kotlinx.coroutines.*
 import java.util.*
 

@@ -1,4 +1,6 @@
-package com.github.yohannestz.chapakt.chapa
+package com.github.yohannestz.chapakt.chapa.util
+
+import com.github.yohannestz.chapakt.chapa.models.ChapaPostData
 
 class ChapaValidator {
     companion object {

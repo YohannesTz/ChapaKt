@@ -1,4 +1,4 @@
-package com.github.yohannestz.chapakt.chapa
+package com.github.yohannestz.chapakt.chapa.util
 
 object ChapaConstants {
     //urls
@@ -9,6 +9,10 @@ object ChapaConstants {
     const val validateCharge = "validate-charge"
     const val defaultRedirectUrl = "https://chapa.co/"
     const val verifyTransaction = "https://api.chapa.co/v1/transaction/verify/"
+    const val getSupportedBanksUrl = "https://api.chapa.co/v1/banks"
+    const val subAccountUrl = "https://api.chapa.co/v1/subaccount"
+    const val initiateTransfer = "https://api.chapa.co/v1/transfers"
+
     //messages
     const val publicKeyRequired = "Public key is required"
 

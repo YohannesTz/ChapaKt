@@ -1,4 +1,4 @@
-package com.github.yohannestz.chapakt.chapa
+package com.github.yohannestz.chapakt.chapa.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
