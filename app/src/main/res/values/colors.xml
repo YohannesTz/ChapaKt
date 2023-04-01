@@ -12,4 +12,7 @@
     <color name="primaryLightColor">#ccff54</color>
     <color name="primaryDarkColor">#5fbc00</color>
     <color name="primaryTextColor">#000000</color>
+
+    <color name="deepBlue">#132334</color>
+    <color name="goGreen">#7bbb43</color>
 </resources>

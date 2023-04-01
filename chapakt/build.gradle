@@ -55,7 +55,6 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-
                 groupId = 'com.github.yohannestz'
                 artifactId = 'chapakt'
                 version = '1.0.0'

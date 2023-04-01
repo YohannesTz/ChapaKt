@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.github.yohannestz.chapakt.ChapaActivity
@@ -26,26 +27,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        secretKey = getString(R.string.api_key_second)
+        secretKey = getString(R.string.api_key_Test)
         chapaSdk = Chapa(secretKey)
 
-        val postData = ChapaPostData(
-            1.0,
-            "ETB",
-            "besumicheal@gmail.com",
-            "Besufikad",
-            "Micheal",
-            UUID.randomUUID().toString(),
-            "https://checkout.chapa.co/checkout/payment-receipt",
-            "ChapaKt",
-            "Chapa kotlin example",
-            "https://img.icons8.com/color/344/kotlin.png"
-        )
 
         val payButton = findViewById<Button>(R.id.payBtn)
         statusTextView = findViewById(R.id.paymentStatus)
 
+        val emailTextField = findViewById<EditText>(R.id.emailTextField)
+        val nameTextField = findViewById<EditText>(R.id.nameTextField)
+        val sirnameTextField = findViewById<EditText>(R.id.sirnameTextField)
+
         payButton.setOnClickListener {
+            val postData = ChapaPostData(
+                1.0,
+                "ETB",
+                emailTextField.text.toString(),
+                nameTextField.text.toString(),
+                sirnameTextField.text.toString(),
+                UUID.randomUUID().toString(),
+                "https://checkout.chapa.co/checkout/payment-receipt",
+                "ChapaKt",
+                "Chapa kotlin example",
+                "https://img.icons8.com/color/344/kotlin.png"
+            )
             CoroutineScope(Dispatchers.IO).launch {
                 val initResult = async {
                     chapaSdk.initialize(postData)
