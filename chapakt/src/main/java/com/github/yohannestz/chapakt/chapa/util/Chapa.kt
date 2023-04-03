@@ -23,6 +23,7 @@ open class Chapa(private val secretKey: String) {
     private val chapaPaymentResultAdapter = moshi.adapter(ChapaResponse::class.java)
     private val getSupportedBanksAdapter = moshi.adapter(GetBanksResponse::class.java)
     private val initializeTransferAdapter = moshi.adapter(InitTransferResponse::class.java)
+    private val createSubAccountAdapter = moshi.adapter(CreateSubAccountResponse::class.java)
 
      fun initialize(postData: ChapaPostData): ChapaPayment? {
         var chapaInitResult: ChapaPayment? = null
@@ -116,7 +117,8 @@ open class Chapa(private val secretKey: String) {
         return getBanksResponse?.data ?: emptyList()
     }
 
-    fun createSubAccount(subAccount: SubAccount): Chapa {
+    fun createSubAccount(subAccount: SubAccount): CreateSubAccountResponse? {
+        var createSubAccountResponse: CreateSubAccountResponse? = null
         val jsonBody = JSONObject()
         jsonBody.put("business_name", subAccount.businessName)
         jsonBody.put("account_name", subAccount.accountName)
@@ -137,7 +139,7 @@ open class Chapa(private val secretKey: String) {
         client.newCall(createSubAccountRequest).execute().use { response ->
             val responseBody = response.body!!.source()
             if (response.isSuccessful) {
-                //todo
+                createSubAccountResponse = createSubAccountAdapter.fromJson(responseBody)
             } else {
                 if (response.message.isNotEmpty()) {
                     throw ChapaException(response.message)
@@ -146,7 +148,7 @@ open class Chapa(private val secretKey: String) {
                 }
             }
         }
-        return this
+        return createSubAccountResponse
     }
 
     fun initTransfer(transfer: Transfer): InitTransferResponse? {
