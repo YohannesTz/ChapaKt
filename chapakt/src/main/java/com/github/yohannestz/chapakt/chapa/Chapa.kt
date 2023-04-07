@@ -1,8 +1,10 @@
-package com.github.yohannestz.chapakt.chapa.util
+package com.github.yohannestz.chapakt.chapa
 
 import com.github.yohannestz.chapakt.chapa.data.remote.ChapaApiClientBuilder
 import com.github.yohannestz.chapakt.chapa.data.remote.ChapaApiService
 import com.github.yohannestz.chapakt.chapa.models.*
+import com.github.yohannestz.chapakt.chapa.util.ChapaValidator
+import java.util.*
 
 open class Chapa(private val secretKey: String) {
 
@@ -16,7 +18,7 @@ open class Chapa(private val secretKey: String) {
         return chapaInitResult
     }
 
-    suspend fun verifyPayment(txRef: String): ChapaResponse? {
+    suspend fun verifyTransaction(txRef: String): ChapaResponse? {
         return chapaApiService.verifyTransaction(txRef).body()
     }
 
@@ -31,5 +33,9 @@ open class Chapa(private val secretKey: String) {
 
     suspend fun initTransfer(transfer: Transfer): InitTransferResponse? {
         return chapaApiService.initTransfer(transfer).body()
+    }
+
+    fun getFormattedTxRef(): String {
+        return "txRef_${UUID.randomUUID().toString()}"
     }
 }

@@ -13,7 +13,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import com.github.yohannestz.chapakt.R
-import com.github.yohannestz.chapakt.chapa.util.Chapa
+import com.github.yohannestz.chapakt.chapa.Chapa
 import com.github.yohannestz.chapakt.chapa.util.ChapaConstants
 
 class ChapaActivity : AppCompatActivity() {

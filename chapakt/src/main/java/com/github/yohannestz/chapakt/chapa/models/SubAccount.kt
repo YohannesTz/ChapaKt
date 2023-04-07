@@ -1,8 +1,9 @@
 package com.github.yohannestz.chapakt.chapa.models
 
-import com.github.yohannestz.chapakt.chapa.util.SplitType
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class SubAccount(
     @Json(name = "business_name")
     val businessName: String,
@@ -13,7 +14,7 @@ data class SubAccount(
     @Json(name = "account_number")
     val accountNumber: String,
     @Json(name = "split_type")
-    val splitType: SplitType,
+    val splitType: String,
     @Json(name = "split_value")
     val splitValue: Double
 )

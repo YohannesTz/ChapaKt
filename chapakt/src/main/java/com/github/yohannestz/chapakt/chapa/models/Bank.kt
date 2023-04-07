@@ -1,22 +1,23 @@
 package com.github.yohannestz.chapakt.chapa.models
 
 import com.squareup.moshi.Json
-import java.time.LocalDateTime
+import com.squareup.moshi.JsonClass
 
 @Json(name = "data")
+@JsonClass(generateAdapter = true)
 data class Bank(
     val id: String,
-    val name: String,
-    val acct_length: Int,
-    val country_id: Int,
-    val currency: String,
-    @Json(name = "is_mobilemoney")
-    val isMobileMoney: Int,
     val swift: String,
+    val name: String,
+    @Json(name = "acct_length")
+    val accountLength: Int,
     @Json(name = "country_id")
-    val countryId: String,
+    val countryId: Int,
     @Json(name = "created_at")
     val createdAt: String,
     @Json(name = "updated_at")
-    val updatedAt: String
+    val updatedAt: String,
+    @Json(name = "is_mobilemoney")
+    val isMobileMoney: Int?,
+    val currency: String,
 )

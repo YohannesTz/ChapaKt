@@ -1,8 +1,10 @@
 package com.github.yohannestz.chapakt.chapa.models
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 @Json
+@JsonClass(generateAdapter = true)
 data class Transfer(
     @Json(name = "account_name")
     var accountName: String,

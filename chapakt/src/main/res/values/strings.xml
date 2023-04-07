@@ -1,1 +1,4 @@
-<resources></resources>
+<resources>
+    <!-- Put your test api keys here if you want to run the tests yourself
+    <string name="chapa_test_apikey">API_KEY_HERE</string> -->
+</resources>

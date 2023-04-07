@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.github.yohannestz.chapakt.chapa.ui.ChapaActivity
-import com.github.yohannestz.chapakt.chapa.util.Chapa
+import com.github.yohannestz.chapakt.chapa.Chapa
 import com.github.yohannestz.chapakt.chapa.util.ChapaConstants
 import com.github.yohannestz.chapakt.chapa.models.ChapaPostData
 import com.github.yohannestz.chapakt.chapa.models.ChapaResponse
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                         result.data!!.getStringExtra(packageName + ChapaConstants.TRANSACTION_EXTRA_TX_REF)
                     if (txRef != null) {
                         val trRes: ChapaResponse? = withContext(Dispatchers.Default) {
-                            chapaSdk.verifyPayment(txRef)
+                            chapaSdk.verifyTransaction(txRef)
                         }
                         if (trRes != null && trRes.status == "success") {
                             this@MainActivity.runOnUiThread {
